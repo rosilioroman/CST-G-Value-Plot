@@ -1,59 +1,67 @@
 '''
 Author: Rosilio Roman
-
-Main script that controls program logic
+Desc: Main script that controls program logic
 '''
-
+import sys
 import argparse
 from src.data_loader import load_data
 # from src.analysis import perform_analysis
 # from src.simulation import run_simulation
 # from src.visualization import visualize_results
 
-def main(data_subdir):
-
+def main(DATA_DIR):
     '''
     Loading Data
     '''
-    # Build the full path to the data directory based on command line argument
-    data_path = f'data/{data_subdir}'
+    # Build the full path to the specified data directory based on command line argument
+    data_path = f'data/{DATA_DIR}'
 
-    # Load data from the specified source
-    print(f"Loading data from {data_path}...")
-    data = load_data(data_path)
+    try:
+        # Load data from the specified source
+        print(f"Loading data from {data_path}...")
+        data = load_data(data_path)
+    except Exception as e:
+        print(f"Failed to load data: {e}")
+        return  # Stop execution if data loading fails
 
-    '''
-    Processing Data
-    '''
-    # # Perform data preprocessing and analysis
-    # print("Analyzing data...")
-    # processed_data = perform_analysis(data)
+    try:
+        # '''
+        # Processing Data
+        # '''
+        # # Perform data preprocessing and analysis
+        # print("Analyzing data...")
+        # processed_data = perform_analysis(data)
 
-    '''
-    Simulating
-    '''
-    # # Run simulation with the processed data
-    # print("Running simulations...")
-    # simulation_results = run_simulation(processed_data)
+        # '''
+        # Run Simulation
+        # '''
+        # # Run simulation with the processed data
+        # print("Running simulations...")
+        # simulation_results = run_simulation(processed_data)
 
-    '''
-    Visualize Data
-    '''
-    # # Visualize the results of the simulation
-    # print("Visualizing results...")
-    # visualize_results(simulation_results)
+        # '''
+        # Visualize Data
+        # '''
+        # # Visualize the results of the simulation
+        # print("Visualizing results...")
+        # visualize_results(simulation_results)
 
-    if data == True:
         print("Process completed successfully.")
-    else:
-        print("Process failed.")
+    except Exception as e:
+        print(f"An error occurred during processing: {e}")
 
 def parse_arguments():
-    parser = argparse.ArgumentParser(description='CST-G-Value-Plot: Process raw CST output data and plot resulting G-Values.')
-    parser.add_argument('data_subdir', type=str, help='Name of subdirectory under data/ containing the input files.')
+    parser = argparse.ArgumentParser(description='Process CST Studio output data and plot resulting G-Values.')
+    parser.add_argument('DATA_DIR', type=str, help='Name of subdirectory under data/ containing the input files.')
     args = parser.parse_args()
     return args
 
 if __name__ == "__main__":
+    rc = 1 # return code
     args = parse_arguments()
-    main(args.data_subdir)
+    try:
+        main(args.DATA_DIR)
+        rc = 0
+    except Exception as e:
+        print('Error: %s' % e, file=sys.stderr)
+    sys.exit(rc)
