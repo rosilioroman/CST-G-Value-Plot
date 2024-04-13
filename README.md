@@ -9,6 +9,17 @@ Python script to process data from CST simulation output and plot G-Values.
 
 - Python 3.8 or higher
 
+**(OPTIONAL)**  
+It would be a good idea to use a Python virtual environment management tool.
+
+Popular choices:
+- Virtualenv - Python's built-in virtual environment manager (recommended)
+    - [Link to `virtualenv` installation docs](https://virtualenv.pypa.io/en/latest/installation.html)
+- Anaconda - a.k.a. `conda`
+    - [Link to `conda` installation docs](https://docs.anaconda.com/free/anaconda/install/)
+- Pyenv - popular lightweight, open-source option
+    - [Link to `pyenv` installation docs](https://github.com/pyenv/pyenv?tab=readme-ov-file#installation)
+
 ### Installing Locally
 
 1. Clone the repository to your local machine:  
