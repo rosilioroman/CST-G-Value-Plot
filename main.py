@@ -20,6 +20,7 @@ def main(DATA_DIR):
         # Load data from the specified source
         print(f"Loading data from {data_path}...")
         data = load_data(data_path)
+        print(data.head())
     except Exception as e:
         print(f"Failed to load data: {e}")
         return  # Stop execution if data loading fails
