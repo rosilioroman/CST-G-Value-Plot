@@ -49,7 +49,7 @@ def main(data_subdir):
         print("Process failed.")
 
 def parse_arguments():
-    parser = argparse.ArgumentParser(description='Run the CST-G-Value-Plot simulation and analysis.')
+    parser = argparse.ArgumentParser(description='CST-G-Value-Plot: Process raw CST output data and plot resulting G-Values.')
     parser.add_argument('data_subdir', type=str, help='Name of subdirectory under data/ containing the input files.')
     args = parser.parse_args()
     return args
