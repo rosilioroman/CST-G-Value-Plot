@@ -7,11 +7,13 @@ import argparse
 from src.data_loader import load_data
 # from src.analysis import perform_analysis
 # from src.simulation import run_simulation
-# from src.visualization import visualize_results
+from src.visualization import plot_v_potential
 
 def main(DATA_DIR):
     '''
-    Loading Data
+    Main script flow:
+    1. Load data from CST output files into a pandas DataFrame
+    2. Plot the resulting V potential values
     '''
     # Build the full path to the specified data directory based on command line argument
     data_path = f'data/{DATA_DIR}'
@@ -20,33 +22,10 @@ def main(DATA_DIR):
         # Load data from the specified source
         print(f"Loading data from {data_path}...")
         data = load_data(data_path)
-        print(data.head())
-    except Exception as e:
-        print(f"Failed to load data: {e}")
-        return  # Stop execution if data loading fails
 
-    try:
-        # '''
-        # Processing Data
-        # '''
-        # # Perform data preprocessing and analysis
-        # print("Analyzing data...")
-        # processed_data = perform_analysis(data)
-
-        # '''
-        # Run Simulation
-        # '''
-        # # Run simulation with the processed data
-        # print("Running simulations...")
-        # simulation_results = run_simulation(processed_data)
-
-        # '''
-        # Visualize Data
-        # '''
-        # # Visualize the results of the simulation
-        # print("Visualizing results...")
-        # visualize_results(simulation_results)
-
+        # Plot V potential values
+        print("Generating a plot of V Potential Values...")
+        plot_v_potential(data)
         print("Process completed successfully.")
     except Exception as e:
         print(f"An error occurred during processing: {e}")
